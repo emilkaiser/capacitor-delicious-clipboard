@@ -1,5 +1,5 @@
 import { WebPlugin } from '@capacitor/core';
-import { DeliciousClipboardPlugin } from './definitions';
+import type { DeliciousClipboardPlugin } from './definitions';
 
 declare let ClipboardItem: any;
 declare global {
@@ -9,13 +9,6 @@ declare global {
 }
 
 export class DeliciousClipboardWeb extends WebPlugin implements DeliciousClipboardPlugin {
-  constructor() {
-    super({
-      name: 'DeliciousClipboard',
-      platforms: ['web'],
-    });
-  }
-
   async inspect(): Promise<{ value: string }> {
     if (typeof navigator === 'undefined' || !navigator.clipboard) {
       throw Error('Clipboard API not available in this browser');
@@ -34,10 +27,3 @@ export class DeliciousClipboardWeb extends WebPlugin implements DeliciousClipboa
     }
   }
 }
-
-const DeliciousClipboard = new DeliciousClipboardWeb();
-
-export { DeliciousClipboard };
-
-import { registerWebPlugin } from '@capacitor/core';
-registerWebPlugin(DeliciousClipboard);
