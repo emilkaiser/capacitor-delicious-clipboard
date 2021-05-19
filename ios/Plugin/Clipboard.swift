@@ -3,11 +3,12 @@ import Capacitor
 
 public class Clipboard {
 
-  func inspectPasteboard() -> String {
+  func inspectPasteboard(completion: @escaping (String) -> ()) {
     
     var type = "unknown"
     
     if #available(iOS 14.0, *) {
+
         UIPasteboard.general.detectPatterns(for: [UIPasteboard.DetectionPattern.probableWebURL, UIPasteboard.DetectionPattern.number, UIPasteboard.DetectionPattern.probableWebSearch], completionHandler: {result in
             
             switch result {
@@ -41,10 +42,11 @@ public class Clipboard {
                 type = "error"
             }
             
+            completion(type)
         })
+    } else {
+        completion(type)
     }
-    
-    return type
   }
 
 }

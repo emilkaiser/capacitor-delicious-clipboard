@@ -6,9 +6,10 @@ public class DeliciousClipboard: CAPPlugin {
     private let implementation = Clipboard()
 
     @objc func inspect(_ call: CAPPluginCall) {
-        let result = implementation.inspectPasteboard()
-        call.success([
-            "value": result
-        ])
+        implementation.inspectPasteboard{ result in
+            call.resolve([
+                "value": result
+            ])
+        }
     }
 }
