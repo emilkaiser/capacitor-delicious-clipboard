@@ -16,7 +16,7 @@ export class DeliciousClipboardWeb extends WebPlugin implements DeliciousClipboa
     });
   }
 
-  async inspect(): Promise<string> {
+  async inspect(): Promise<{ value: string }> {
     if (typeof navigator === 'undefined' || !navigator.clipboard) {
       throw Error('Clipboard API not available in this browser');
     }
@@ -25,12 +25,12 @@ export class DeliciousClipboardWeb extends WebPlugin implements DeliciousClipboa
       try {
         const clipboardItems = await navigator.clipboard.read();
         const type = clipboardItems[0].types[0];
-        return type;
+        return { value: type };
       } catch (err) {
-        return 'text/plain';
+        return { value: 'text/plain' };
       }
     } else {
-      return 'text/plain';
+      return { value: 'text/plain' };
     }
   }
 }

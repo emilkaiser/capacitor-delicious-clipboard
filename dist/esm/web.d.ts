@@ -7,7 +7,9 @@ declare global {
 }
 export declare class DeliciousClipboardWeb extends WebPlugin implements DeliciousClipboardPlugin {
     constructor();
-    inspect(): Promise<string>;
+    inspect(): Promise<{
+        value: string;
+    }>;
 }
 declare const DeliciousClipboard: DeliciousClipboardWeb;
 export { DeliciousClipboard };

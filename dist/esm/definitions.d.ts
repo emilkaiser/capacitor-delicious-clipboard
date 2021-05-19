@@ -4,5 +4,7 @@ declare module '@capacitor/core' {
     }
 }
 export interface DeliciousClipboardPlugin {
-    inspect(): Promise<string>;
+    inspect(): Promise<{
+        value: string;
+    }>;
 }

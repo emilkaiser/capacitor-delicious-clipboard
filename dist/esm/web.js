@@ -24,14 +24,14 @@ export class DeliciousClipboardWeb extends WebPlugin {
                 try {
                     const clipboardItems = yield navigator.clipboard.read();
                     const type = clipboardItems[0].types[0];
-                    return type;
+                    return { value: type };
                 }
                 catch (err) {
-                    return 'text/plain';
+                    return { value: 'text/plain' };
                 }
             }
             else {
-                return 'text/plain';
+                return { value: 'text/plain' };
             }
         });
     }
