@@ -11,6 +11,8 @@ public class DeliciousClipboard extends Plugin {
 
     @PluginMethod
     public void inspect(PluginCall call) {
-        call.success("unknown");
+        JSObject ret = new JSObject();
+		ret.put("value", "unknown");
+		call.resolve(ret);
     }
 }
